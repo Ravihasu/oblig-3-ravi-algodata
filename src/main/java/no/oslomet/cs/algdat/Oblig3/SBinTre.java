@@ -97,7 +97,7 @@ public class SBinTre<T> {
         }
 
 
-        p = new Node<>(verdi);
+        p = new Node<T>(verdi,q);
 
         if (q == null) rot = p;
         else if (cmp < 0) q.venstre = p;
