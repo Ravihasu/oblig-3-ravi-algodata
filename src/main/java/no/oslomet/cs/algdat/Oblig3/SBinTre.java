@@ -116,9 +116,21 @@ public class SBinTre<T> {
     }
 
     public int antall(T verdi) {
-        int count = 0;
+        int teller = 0;
 
         if (verdi == null){return 0;}
+        Node<T> p=rot;
+        while (p!=null)
+        {
+            int cmp = comp.compare(verdi,p.verdi);
+            if (cmp<0){p=p.venstre;}
+            else if (cmp > 0){p=p.høyre;}
+            else {
+                teller++;
+                p = p.høyre;
+            }
+        }
+        return teller;
     }
 
     public void nullstill() {
