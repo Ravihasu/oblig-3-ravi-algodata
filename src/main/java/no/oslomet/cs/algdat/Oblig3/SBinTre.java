@@ -146,7 +146,16 @@ public class SBinTre<T> {
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        Node<T> parent = p.forelder;
+
+        if (parent == null) return null;
+
+        if (p == parent.høyre) return parent;
+
+        if (p == parent.venstre) {
+            if (p.forelder.høyre == null) return p.forelder;
+        }
+        return førstePostorden(parent.høyre);
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
