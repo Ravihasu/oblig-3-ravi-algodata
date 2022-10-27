@@ -86,15 +86,14 @@ public class SBinTre<T> {
         Node<T> p = rot, q = null;
         int cmp = 0;
 
-        while (p != null)
-        {
+        while (p != null) {
             q = p;
-            cmp = comp.compare(verdi,p.verdi);
+            cmp = comp.compare(verdi, p.verdi);
             p = cmp < 0 ? p.venstre : p.høyre;
         }
 
 
-        p = new Node<T>(verdi,q);
+        p = new Node<T>(verdi, q);
 
         if (q == null) rot = p;
         else if (cmp < 0) q.venstre = p;
@@ -115,14 +114,17 @@ public class SBinTre<T> {
     public int antall(T verdi) {
         int teller = 0;
 
-        if (verdi == null){return 0;}
-        Node<T> p=rot;
-        while (p!=null)
-        {
-            int cmp = comp.compare(verdi,p.verdi);
-            if (cmp<0){p=p.venstre;}
-            else if (cmp > 0){p=p.høyre;}
-            else {
+        if (verdi == null) {
+            return 0;
+        }
+        Node<T> p = rot;
+        while (p != null) {
+            int cmp = comp.compare(verdi, p.verdi);
+            if (cmp < 0) {
+                p = p.venstre;
+            } else if (cmp > 0) {
+                p = p.høyre;
+            } else {
                 teller++;
                 p = p.høyre;
             }
@@ -156,15 +158,21 @@ public class SBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        if (tom()){throw new NoSuchElementException("Ingen verdier i treet!");}
-
-            Node <T> p = førstePostorden(rot);
-
+        if (tom()) {
+            throw new NoSuchElementException("Ingen verdier i treet!");
         }
 
-
+        Node<T> p = førstePostorden(rot);
+        while (p != null) {
+            oppgave.utførOppgave(p.verdi);
+            p = nestePostorden(p);
+        }
 
     }
+
+
+
+
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
         postordenRecursive(rot, oppgave);
