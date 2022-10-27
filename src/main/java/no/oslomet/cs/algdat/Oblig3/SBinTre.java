@@ -1,10 +1,7 @@
 package no.oslomet.cs.algdat.Oblig3;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class SBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -159,7 +156,14 @@ public class SBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (tom()){throw new NoSuchElementException("Ingen verdier i treet!");}
+
+            Node <T> p = førstePostorden(rot);
+
+        }
+
+
+
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
